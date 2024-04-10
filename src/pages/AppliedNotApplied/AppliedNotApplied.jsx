@@ -70,7 +70,7 @@ function TableData() {
 
 
       // Generate table headers dynamically from the first data object
-      const tableHeaders = data.length > 0 ? Object.keys(data[0].student) : [];
+      const tableHeaders = data.length > 0 ? Object.keys(data[0]) : [];
 
       function downloadCSV(data, filename) {
             const csvContent = Papa.unparse(data); // Assuming you're using PapaParse library for CSV parsing
@@ -192,10 +192,9 @@ function TableData() {
                                                 key={index}
                                                 className="bg-white border-b dark:bg-gray-800 whitespace-nowrap text-center dark:text-slate-300 text-black font-medium"
                                           >
-                                                {/* Render student object properties as table cells */}
-                                                {Object.values(rowData.student).map((value, index) => (
+                                                {tableHeaders.map((header, index) => (
                                                       <td key={index} className="px-6 py-4">
-                                                            {value}
+                                                            {String(rowData[header])} {/* Convert object to string */}
                                                       </td>
                                                 ))}
                                           </tr>
