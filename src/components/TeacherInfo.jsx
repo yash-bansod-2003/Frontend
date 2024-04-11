@@ -5,21 +5,17 @@ import { Navigate } from "react-router-dom";
 function ProjectSubmissionForm() {
   const { user } = useAuth();
 
-  if (user?.Role !== "teacher") {
-    return <Navigate to="/dashboard" replace />;
-  }
-
   return (
     <div className="max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-1 mx-auto my-7">
       <div>
         <h2 className="mb-4 text-4xl font-bold text-gray-900 dark:text-white">
-          Teacher Profile
+          {user?.Role === "tpo" ? "TPO Profile" : "Teacher Profile"}
         </h2>
       </div>
       {user && (
         <form>
           <div className="bg-white rounded-xl shadow text-gray-900 dark:text-white dark:bg-slate-800">
-            <div className="relative h-40 rounded-t-xl bg-cover bg-center">
+            <div className="relative h-10 rounded-t-xl bg-cover bg-center">
               <div className="absolute top-0 right-0 p-4"></div>
             </div>
 
@@ -32,34 +28,15 @@ function ProjectSubmissionForm() {
 
                   <div className="grid1 sm:flex sm:items-center sm:gap-x-5">
                     <div className="mt-4 sm:mt-auto sm:mb-1.5 flex justify-center sm:justify-start gap-2">
-                      <button
-                        disabled
-                        type="button"
-                        className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke-width="1.5"
-                          stroke="currentColor"
-                          class="w-5 h-4.5"
+                      {user?.Role === "tpo" && (
+                        <button
+                          disabled
+                          type="button"
+                          className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-red-500 text-white shadow-sm  disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700  dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                         >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5"
-                          />
-                        </svg>
-                        Upload image
-                      </button>
-                      <button
-                        disabled
-                        type="button"
-                        className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-red-500 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                      >
-                        Delete
-                      </button>
+                          You Role is TPO
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -234,7 +211,7 @@ function ProjectSubmissionForm() {
                           id="last-name"
                           autoComplete="family-name"
                           className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-3 px-5 dark:bg-[#1E293B] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light outline-transparent text-base"
-                          placeholder="DD/MM/YYYY"
+                          placeholder="DD-MM-YYYY"
                         />
                       </div>
                     </div>
