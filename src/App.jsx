@@ -19,9 +19,11 @@ import AppliedNotApplied from "./pages/AppliedNotApplied/AppliedNotApplied";
 import Teacherinfo from "./components/TeacherInfo";
 import PasswordChange from "./components/PasswordChange";
 import AppliedJobsGrid from "./pages/AppliedJobs/AppliedJobs";
+import FileUploadButton from "./pages/UploadFile/FileUploadButton";
 import TeacherRegister from "./pages/TeacherRegister/TeacherRegister";
 import { useAuth } from "./context/auth";
 import { api } from "./client/api";
+
 import { useAuthorize } from "./hooks/useAuthorize";
 function App() {
   const { login } = useAuth();
@@ -60,6 +62,11 @@ function App() {
           <Route exact path="/dashboard/activejobs" element={<JobGrid />} />
           <Route path="/dashboard/activejobs/:id" element={<CompanyDesc />} />
           <Route exact path="/dashboard/studentdata" element={<TableData />} />
+          <Route
+            exact
+            path="/dashboard/studentdata/upload"
+            element={<FileUploadButton />}
+          />
           <Route
             exact
             path="/dashboard/appliedstatus"
