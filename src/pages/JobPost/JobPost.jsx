@@ -49,7 +49,6 @@ function JobPost() {
     e.preventDefault();
 
     try {
-
       const response = await api.post("/api/v1/post", {
         company_Name: formData.companyName,
         company_description: formData.aboutCompany,

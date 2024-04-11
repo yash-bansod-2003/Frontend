@@ -13,6 +13,8 @@
     "axios": "^1.6.8",
     "chart.js": "^4.4.1",
     "chartjs-adapter-moment": "^1.0.1",
+    "exceljs": "^4.4.0",
+    "file-saver": "^2.0.5",
     "moment": "^2.29.4",
     "papaparse": "^5.4.1",
     "preline": "^2.0.3",

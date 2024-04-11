@@ -68,9 +68,7 @@ function JobGrid() {
                     </div>
 
                     <div className="mr-4 text-md text-indigo-600">
-                      <Link
-                        to={`/dashboard/activejobs/${item._id}`}
-                      >
+                      <Link to={`/dashboard/activejobs/${item._id}`}>
                         See Details
                       </Link>
                     </div>

@@ -16,10 +16,9 @@ function DropdownProfile({ align }) {
   async function handleLogout() {
     const response = await api.post("/api/v1/user/logout");
     if (response.data) {
-      logout()
+      logout();
     }
   }
-
 
   // close on click outside
   useEffect(() => {

@@ -17,23 +17,24 @@ function CompanyDesc() {
   async function featcher(id) {
     const response = await api.get(`/api/v1/post/${id}`);
     if (response.data) {
-      setPost(response.data)
+      setPost(response.data);
     }
   }
 
   async function getAppliedStatus(postId) {
-    const response = await api.get(`/api/v1/user/applied-status?postId=${postId}`);
+    const response = await api.get(
+      `/api/v1/user/applied-status?postId=${postId}`,
+    );
     if (response.data) {
       setIsApplied(response.data?.hasApplied);
     }
   }
 
-
   async function handleApply(post) {
     try {
-      setIsLoading(true)
+      setIsLoading(true);
       const response = await api.post("/api/v1/application", {
-        post: post._id
+        post: post._id,
       });
       console.log(response);
       toast.success("successfully applied!", {
@@ -44,15 +45,14 @@ function CompanyDesc() {
       toast.error("somthing went wrong please try again!", {
         position: "top-center",
       });
-    }
-    finally {
-      setIsLoading(false)
+    } finally {
+      setIsLoading(false);
     }
   }
 
   async function handleRemove(id) {
     try {
-      setIsLoading(true)
+      setIsLoading(true);
       const response = await api.delete(`/api/v1/post/${id}`);
       toast.success("successfully deleted!", {
         position: "top-center",
@@ -62,17 +62,15 @@ function CompanyDesc() {
       toast.error("somthing went wrong please try again!", {
         position: "top-center",
       });
-    }
-    finally {
-      setIsLoading(false)
+    } finally {
+      setIsLoading(false);
     }
   }
 
   React.useEffect(() => {
     featcher(id);
-    getAppliedStatus(id)
-  }, [])
-
+    getAppliedStatus(id);
+  }, []);
 
   return (
     <>
@@ -117,35 +115,32 @@ function CompanyDesc() {
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              {
-                isAuthorize && (
-                  <button
-                    onClick={async () => await handleRemove(post?._id)}
-                    type="submit"
-                    className="w-full md:w-1/2 text-white bg-red-600 focus:ring-0 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2 text-center dark:bg-red-600  dark:focus:ring-red-800 mx-auto"
-                  >
-                    Delete Job Post
-                  </button>
-                )}
-              {
-                !isAuthorize && isApplied ? (
-                  <button
-                    onClick={async () => await handleApply(post)}
-                    type="submit"
-                    className="w-full md:w-1/2 text-white bg-green-500 focus:ring-0 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2 text-center dark:bg-green-500  dark:focus:ring-green-800 mx-auto"
-                  >
-                    Already Applied
-                  </button>
-                ) : (
-                  <button
-                    onClick={async () => await handleApply(post)}
-                    type="submit"
-                    className="w-full md:w-1/2 text-white bg-[#4F46E5] focus:ring-0 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2 text-center dark:bg-[#4F46E5]  dark:focus:ring-blue-800 mx-auto"
-                  >
-                    Apply to job
-                  </button>
-                )
-              }
+              {isAuthorize && (
+                <button
+                  onClick={async () => await handleRemove(post?._id)}
+                  type="submit"
+                  className="w-full md:w-1/2 text-white bg-red-600 focus:ring-0 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2 text-center dark:bg-red-600  dark:focus:ring-red-800 mx-auto"
+                >
+                  Delete Job Post
+                </button>
+              )}
+              {!isAuthorize && isApplied ? (
+                <button
+                  onClick={async () => await handleApply(post)}
+                  type="submit"
+                  className="w-full md:w-1/2 text-white bg-green-500 focus:ring-0 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2 text-center dark:bg-green-500  dark:focus:ring-green-800 mx-auto"
+                >
+                  Already Applied
+                </button>
+              ) : (
+                <button
+                  onClick={async () => await handleApply(post)}
+                  type="submit"
+                  className="w-full md:w-1/2 text-white bg-[#4F46E5] focus:ring-0 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2 text-center dark:bg-[#4F46E5]  dark:focus:ring-blue-800 mx-auto"
+                >
+                  Apply to job
+                </button>
+              )}
             </div>
           </div>
 
@@ -280,9 +275,7 @@ function CompanyDesc() {
                 <p className="block text-lg font-medium text-gray-900 dark:text-white mt-2 mb-2">
                   Description
                 </p>
-                <p className=" text-justify mb-4">
-                  {post.job_Description}
-                </p>
+                <p className=" text-justify mb-4">{post.job_Description}</p>
 
                 <div className="">
                   <p className=" block text-lg font-medium text-gray-900 dark:text-white">
@@ -299,11 +292,7 @@ function CompanyDesc() {
                 <p className="block text-lg font-medium text-gray-900 dark:text-white mt-2 mb-2">
                   Job Description
                 </p>
-                <p className=" text-justify mb-2">
-                  {
-                    post.job_Description
-                  }
-                </p>
+                <p className=" text-justify mb-2">{post.job_Description}</p>
               </div>
 
               <div class="grid grid-cols-1 content-center py-4 mb-2 ">
@@ -356,20 +345,17 @@ function CompanyDesc() {
             <p className="block text-lg font-medium text-gray-900 dark:text-white mt-3 mb-2">
               Selection Process
             </p>
-            <p className=" text-justify mb-2">
-              {post.selection_Process}
-            </p>
+            <p className=" text-justify mb-2">{post.selection_Process}</p>
             <div className="line mt-4 border border-gray-900/10 dark:border-[#4F46E5] opacity-50"></div>
             <p className="block text-lg font-medium text-gray-900 dark:text-white mt-2 mb-2">
               Terms and conditions of employment:
             </p>
-            <p className=" text-justify mb-2">
-              {post.terms_and_conditions}
-            </p>
+            <p className=" text-justify mb-2">{post.terms_and_conditions}</p>
             <div className="line mt-4 border border-gray-900/10 dark:border-[#4F46E5] opacity-50"></div>
             <div className="">
               <p className=" block text-lg font-medium text-gray-900 dark:text-white mt-3">
-                Website Link : <span className="underline">{post.website_Link}</span>
+                Website Link :{" "}
+                <span className="underline">{post.website_Link}</span>
               </p>{" "}
               <a href="" />
             </div>

@@ -1,15 +1,14 @@
-import { useAuth } from "../context/auth"
+import { useAuth } from "../context/auth";
 const Roles = Object.freeze({
-      Tpo: 'tpo',
-      Teacher: 'teacher',
-      Student: 'student',
+  Tpo: "tpo",
+  Teacher: "teacher",
+  Student: "student",
 });
 
-
 const useAuthorize = () => {
-      const { user } = useAuth();
-      const isAuthorize = [Roles.Teacher, Roles.Teacher].includes(user?.Role);
-      return { isAuthorize }
-}
+  const { user } = useAuth();
+  const isAuthorize = [Roles.Teacher, Roles.Tpo].includes(user?.Role);
+  return { isAuthorize };
+};
 
-export { useAuthorize }
+export { useAuthorize };

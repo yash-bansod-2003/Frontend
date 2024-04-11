@@ -2,17 +2,19 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Papa from "papaparse";
 import { api } from "../../client/api";
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams } from "react-router-dom";
 
 function TableData() {
   const [data, setData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
-  const page = parseInt(searchParams.get('page')) || 1;
-  const limit = parseInt(searchParams.get('limit')) || 10;
+  const page = parseInt(searchParams.get("page")) || 1;
+  const limit = parseInt(searchParams.get("limit")) || 10;
 
   async function fetcher(page, limit) {
-    const response = await api.get(`/api/v1/user?user?limit=${limit}&page=${page}`);
+    const response = await api.get(
+      `/api/v1/user?user?limit=${limit}&page=${page}`,
+    );
     if (response.data) {
       setData(response.data);
     }
@@ -21,7 +23,6 @@ function TableData() {
   useEffect(() => {
     fetcher(page, limit);
   }, [page, limit]);
-
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
@@ -38,10 +39,7 @@ function TableData() {
   const indexOfFirstItem = indexOfLastItem - limit;
 
   // Get current items to display on the page
-  const currentItems = data.slice(
-    indexOfFirstItem,
-    indexOfLastItem
-  );
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
 
   // Generate table headers dynamically from the first data object
   const tableHeaders = data.length > 0 ? Object.keys(data[0]) : [];
@@ -52,7 +50,8 @@ function TableData() {
 
     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
 
-    if (navigator.msSaveBlob) { // For IE and Edge browsers
+    if (navigator.msSaveBlob) {
+      // For IE and Edge browsers
       navigator.msSaveBlob(blob, filename);
     } else {
       const link = document.createElement("a");

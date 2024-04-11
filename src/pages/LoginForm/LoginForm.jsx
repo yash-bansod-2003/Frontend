@@ -21,20 +21,16 @@ function RegistrationForm() {
 
     try {
       setIsLoading(true);
-      const response = await api.post(
-        `/api/v1/user/login`,
-        {
-          Email_ID: email,
-          Password: password,
-        },
-      );
+      const response = await api.post(`/api/v1/user/login`, {
+        Email_ID: email,
+        Password: password,
+      });
 
       const data = response.data;
 
       if (data) {
         login(data);
       }
-
     } catch (error) {
       console.log(error);
       setIsLoading(false);
@@ -70,12 +66,12 @@ function RegistrationForm() {
         />
       </div>
       <div className="mb-5">
-        <label
+        {/* <label
           htmlFor="role"
           className="block mb-2 text-md font-medium text-gray-900 dark:text-white"
         >
           Your Role
-        </label>
+        </label> */}
         {/* <select
           id="role"
           className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-3 px-5 dark:bg-[#1E293B] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light outline-transparent text-base"

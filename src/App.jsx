@@ -18,7 +18,8 @@ import Studentinfo from "./pages/StudentDashboard/Studentinfo";
 import AppliedNotApplied from "./pages/AppliedNotApplied/AppliedNotApplied";
 import Teacherinfo from "./components/TeacherInfo";
 import PasswordChange from "./components/PasswordChange";
-import AppliedJobsGrid from "./pages/AppliedJobs/AppliedJobs"
+import AppliedJobsGrid from "./pages/AppliedJobs/AppliedJobs";
+import TeacherRegister from "./pages/TeacherRegister/TeacherRegister";
 import { useAuth } from "./context/auth";
 import { api } from "./client/api";
 import { useAuthorize } from "./hooks/useAuthorize";
@@ -34,8 +35,8 @@ function App() {
   }
 
   useEffect(() => {
-    fetcher()
-  }, [])
+    fetcher();
+  }, []);
 
   useEffect(() => {
     document.querySelector("html").style.scrollBehavior = "auto";
@@ -57,15 +58,33 @@ function App() {
           />
           <Route exact path="/dashboard/job-post" element={<JobPost />} />
           <Route exact path="/dashboard/activejobs" element={<JobGrid />} />
-          <Route
-            path="/dashboard/activejobs/:id"
-            element={<CompanyDesc />}
-          />
+          <Route path="/dashboard/activejobs/:id" element={<CompanyDesc />} />
           <Route exact path="/dashboard/studentdata" element={<TableData />} />
-          <Route exact path="/dashboard/appliedstatus" element={<AppliedNotApplied />} />
-          <Route exact path="/dashboard/settings/account" element={isAuthorize ? <Teacherinfo /> : <Studentinfo />} />
-          <Route exact path="/dashboard/settings/account/password" element={<PasswordChange />} />
-          <Route exact path="/dashboard/settings/appliedjobs" element={<AppliedJobsGrid />} />
+          <Route
+            exact
+            path="/dashboard/appliedstatus"
+            element={<AppliedNotApplied />}
+          />
+          <Route
+            exact
+            path="/dashboard/settings/account"
+            element={isAuthorize ? <Teacherinfo /> : <Studentinfo />}
+          />
+          <Route
+            exact
+            path="/dashboard/register"
+            element={<TeacherRegister />}
+          />
+          <Route
+            exact
+            path="/dashboard/settings/account/password"
+            element={<PasswordChange />}
+          />
+          <Route
+            exact
+            path="/dashboard/settings/appliedjobs"
+            element={<AppliedJobsGrid />}
+          />
         </Route>
       </Routes>
     </>
